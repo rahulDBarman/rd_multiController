@@ -1,136 +1,147 @@
 //Date created ; 25-04-2018
 //Created by Rahul Deb Barman @ India
-//Last modified : 26-04-2018
+//Last modified : 04-22-2026
 global proc multiController()
-{
-//________________________________Window___________________
-if (`window -ex mtCwin`)
-deleteUI mtCwin;
-window -s off -w 355 -h 100 -t "Multi Controller" mtCwin;
+	{
+	//________________________________Window___________________
+	if (`window -ex mtCwin`)
+	deleteUI mtCwin;
+	window -s off -w 370 -h 200-t "Multi Controller" mtCwin;
 
-//________________________________Head___________________
-columnLayout -w 355 -adj on;
-separator -st "none"  -vis on -h 10 ;
-text -l " � Rahul D's Multi Controller";
+	//________________________________Head___________________
+	columnLayout -w 370 -adj on;
+	separator -st "none"  -vis on -h 10 ;
+	text -l " Rahul D's Multi Controller";
 
-separator -st "none"  -vis on -h 10 ;
-
-
-
-rowColumnLayout -h 25 -nc 34 ;
-text -w 83 -l"" ;
-button -l"" -en on -w 8  -bgc .361 .361 .361 -c  "mc_setIndexColor(-1)";
-button -l"" -en on -w 8  -bgc .467 .467 .467 -c "mc_setIndexColor(0)";
-button -l"" -en on -w 8  -bgc 0 0 0 -c "mc_setIndexColor(1)";
-button -l"" -en on -w 8  -bgc .247 .247 .247 -c "mc_setIndexColor(2)";
-button -l"" -en on -w 8  -bgc .631 .631 .631 -c "mc_setIndexColor(3)";
-button -l"" -en on -w 8  -bgc 0.608 0 0.157 -c "mc_setIndexColor(4)";
-button -l"" -en on -w 8  -bgc 0 0.016 0.373 -c "mc_setIndexColor(5)";
-button -l"" -en on -w 8  -bgc 0 0 1 -c "mc_setIndexColor(6)";
-button -l"" -en on -w 8  -bgc 0 0.275 0.094 -c "mc_setIndexColor(7)";
-button -l"" -en on -w 8  -bgc 0.145 0 0.263 -c "mc_setIndexColor(8)";
-button -l"" -en on -w 8  -bgc 0.78 0 0.78 -c "mc_setIndexColor(9)";
-button -l"" -en on -w 8  -bgc 0.537 0.278 0.2 -c "mc_setIndexColor(10)";
-button -l"" -en on -w 8  -bgc 0.243 0.133 0.122 -c "mc_setIndexColor(11)";
-button -l"" -en on -w 8  -bgc 0.6 0.145 0 -c "mc_setIndexColor(12)";
-button -l"" -en on -w 8  -bgc 1 0 0 -c "mc_setIndexColor(13)";
-button -l"" -en on -w 8  -bgc 0 1 0 -c "mc_setIndexColor(14)";
-button -l"" -en on -w 8  -bgc 0 0.255 0.6 -c "mc_setIndexColor(15)";
-button -l"" -en on -w 8  -bgc 1 1 1 -c "mc_setIndexColor(16)";
-button -l"" -en on -w 8  -bgc 1 1 0 -c "mc_setIndexColor(17)";
-button -l"" -en on -w 8  -bgc 0.388 0.863 1 -c "mc_setIndexColor(18)";
-button -l"" -en on -w 8  -bgc 0.263 1 0.635 -c "mc_setIndexColor(19)";
-button -l"" -en on -w 8  -bgc 1 0.686 0.686 -c "mc_setIndexColor(20)";
-button -l"" -en on -w 8  -bgc 0.89 0.675 0.475 -c "mc_setIndexColor(21)";
-button -l"" -en on -w 8  -bgc 1 1 0.384 -c "mc_setIndexColor(22)";
-button -l"" -en on -w 8  -bgc 0 0.6 0.325 -c "mc_setIndexColor(23)";
-button -l"" -en on -w 8  -bgc 0.627 0.412 0.188 -c "mc_setIndexColor(24)";
-button -l"" -en on -w 8  -bgc 0.62 0.627 0.188 -c "mc_setIndexColor(25)";
-button -l"" -en on -w 8  -bgc 0.408 0.627 0.188 -c "mc_setIndexColor(26)";
-button -l"" -en on -w 8  -bgc 0.188 0.627 0.365 -c "mc_setIndexColor(27)";
-button -l"" -en on -w 8  -bgc 0.188 0.627 0.627 -c "mc_setIndexColor(28)";
-button -l"" -en on -w 8  -bgc 0.188 0.404 0.627 -c "mc_setIndexColor(29)";
-button -l"" -en on -w 8  -bgc 0.435 0.188 0.627 -c "mc_setIndexColor(30)";
-button -l"" -en on -w 8  -bgc 0.631 0.188 0.412 -c "mc_setIndexColor(31)";
-setParent -u;
-
-columnLayout ;
-colorIndexSliderGrp -w 352 -min 0 -max 32 -value 14 cslider;
-rowColumnLayout -nc 4 -cs 2 2;
-button  -w 60 -l "Color" -c colorbtn;
-button  -w 60 -l "Shape" -c changeShape;
-text  -l"" -w 2;
-optionMenuGrp -adj on -l "Ctrl Shape:" cShape; 
-menuItem -l "Cube";
-menuItem -l "RndCube";
-menuItem -l "Circle";
-menuItem -l "3Circle";
-menuItem -l "Square";
-menuItem -l "Locator";
-menuItem -l "Sphere";
-menuItem -l "Pin";
-menuItem -l "Plus";
-menuItem -l "Th. Plus";
-menuItem -l "Prism";
-menuItem -l "Hand";
-menuItem -l "Arrow";
-menuItem -l "Cog";
-menuItem -l "PoleV";
-
-setParent -u;
-
-separator -w 355 -st "none"  -vis on -h 3 ;
-
-rowColumnLayout -nc 2 -cs 2 2;
-button -h 17 -w 120 -l "Parent Chain" -c parentChain;
-button -h 17 -w 50 -l "Joint" -c loopJoint;
-setParent -u;
-
-separator -w 355 -st "none"  -vis on -h 5 ;
-rowColumnLayout -nc 3;
-text -w 74 -l "Object Type:" stype;
-radioCollection ;
-radioButton -l "Mesh" -sl -cc msh msh;
-radioButton -l "Others" -cc othr othr;
-setParent -u;
-separator -w 355 -st "in"  -vis on -h 8 ;
-
-rowColumnLayout -nc 4 -vis (`radioButton  -q -sl othr`) rcOthr;
-text -w 50 -l "";
-checkBox -w 100 -l "Ctrl" -v on -vis off cto;
-checkBox -w 100 -l "FK Ctrl"  fko;
-checkBox -w 100 -l "Parent Cons." -cc pto pto;
-setParent -u;
-rowColumnLayout -nc 2 -h 19  -vis (`radioButton  -q -sl othr`) ccOthr;
-text -w 250 -l "";
-checkBox -w 100 -l "Connect" -cc coc coc;
-setParent -u;
-
-rowColumnLayout -nc 4 rcJoint;
-text -w 50 -l"";
-checkBox -w 100 -l "Ctrl" ct;
-checkBox -w 100 -l "FK Ctrl" fk;
-checkBox -w 100 -l "Joint" -cc jt jt;
-setParent -u;
-
-rowColumnLayout -nc 4 ccJoint;
-text -w 50 -l"";
-checkBox -w 100 -l "Parent Cons." ptj;
-checkBox -w 100 -l "Single Mesh" -vis (`checkBox -q -v ct`) -cc smj smj;
-checkBox -w 100 -l "Skin Cls." -vis (`checkBox -q -v jt`) sk;
-setParent -u;
-
-separator -st "none"  -vis on -h 5 ;
-columnLayout ;    
-button -w 349 -h 40 -bgc .859 .580 .337 -l "Create" -c createJ createJ;
-button -w 349 -bgc 0.682 .612 0.859 -h 40 -l "Create" -vis (`radioButton  -q -sl othr`) -c createO createO;
-separator -st "none"  -vis on -h 5 ;
-text -w 349  -l "Select deformable object" msgText;
-separator -st "none"  -vis on -h 10 ;
+	separator -st "none"  -vis on -h 10 ;
 
 
 
-showWindow mtCwin;
+	rowColumnLayout -h 25 -nc 34 ;
+	text -w 83 -l"" ;
+	button -l"" -en on -w 9  -bgc 0 0 0 -c "mc_setIndexColor(1)" mc_1;
+	button -l"" -en on -w 9  -bgc .247 .247 .247 -c "mc_setIndexColor(2)";
+	button -l"" -en on -w 9  -bgc .631 .631 .631 -c "mc_setIndexColor(3)";
+	button -l"" -en on -w 9  -bgc 0.608 0 0.157 -c "mc_setIndexColor(4)";
+	button -l"" -en on -w 9  -bgc 0 0.016 0.373 -c "mc_setIndexColor(5)";
+	button -l"" -en on -w 9  -bgc 0 0 1 -c "mc_setIndexColor(6)";
+	button -l"" -en on -w 9  -bgc 0 0.275 0.094 -c "mc_setIndexColor(7)";
+	button -l"" -en on -w 9  -bgc 0.145 0 0.263 -c "mc_setIndexColor(8)";
+	button -l"" -en on -w 9  -bgc 0.78 0 0.78 -c "mc_setIndexColor(9)";
+	button -l"" -en on -w 9  -bgc 0.537 0.278 0.2 -c "mc_setIndexColor(10)";
+	button -l"" -en on -w 9  -bgc 0.243 0.133 0.122 -c "mc_setIndexColor(11)";
+	button -l"" -en on -w 9  -bgc 0.6 0.145 0 -c "mc_setIndexColor(12)";
+	button -l"" -en on -w 9  -bgc 1 0 0 -c "mc_setIndexColor(13)";
+	button -l"" -en on -w 9  -bgc 0 1 0 -c "mc_setIndexColor(14)";
+	button -l"" -en on -w 9  -bgc 0 0.255 0.6 -c "mc_setIndexColor(15)";
+	button -l"" -en on -w 9  -bgc 1 1 1 -c "mc_setIndexColor(16)";
+	button -l"" -en on -w 9  -bgc 1 1 0 -c "mc_setIndexColor(17)";
+	button -l"" -en on -w 9  -bgc 0.388 0.863 1 -c "mc_setIndexColor(18)";
+	button -l"" -en on -w 9  -bgc 0.263 1 0.635 -c "mc_setIndexColor(19)";
+	button -l"" -en on -w 9  -bgc 1 0.686 0.686 -c "mc_setIndexColor(20)";
+	button -l"" -en on -w 9  -bgc 0.89 0.675 0.475 -c "mc_setIndexColor(21)";
+	button -l"" -en on -w 9  -bgc 1 1 0.384 -c "mc_setIndexColor(22)";
+	button -l"" -en on -w 9  -bgc 0 0.6 0.325 -c "mc_setIndexColor(23)";
+	button -l"" -en on -w 9  -bgc 0.627 0.412 0.188 -c "mc_setIndexColor(24)";
+	button -l"" -en on -w 9  -bgc 0.62 0.627 0.188 -c "mc_setIndexColor(25)";
+	button -l"" -en on -w 9  -bgc 0.408 0.627 0.188 -c "mc_setIndexColor(26)";
+	button -l"" -en on -w 9  -bgc 0.188 0.627 0.365 -c "mc_setIndexColor(27)";
+	button -l"" -en on -w 9  -bgc 0.188 0.627 0.627 -c "mc_setIndexColor(28)";
+	button -l"" -en on -w 9  -bgc 0.188 0.404 0.627 -c "mc_setIndexColor(29)";
+	button -l"" -en on -w 9  -bgc 0.435 0.188 0.627 -c "mc_setIndexColor(30)";
+	button -l"" -en on -w 9  -bgc 0.631 0.188 0.412 -c "mc_setIndexColor(31)";
+	setParent -u;
+
+	columnLayout ;
+	colorIndexSliderGrp -w 365 -min 2 -max 32 -value 14 cslider;
+	rowColumnLayout -nc 4 -cs 2 2;
+	button  -w 60 -l "Color" -c colorbtn;
+	button  -w 60 -l "Shape" -c changeShape;
+	text  -l"" -w 2;
+	optionMenuGrp -adj on -l "Ctrl Shape:" cShape; 
+	menuItem -l "Cube";
+	menuItem -l "RndCube";
+	menuItem -l "Circle";
+	menuItem -l "3Circle";
+	menuItem -l "Square";
+	menuItem -l "Locator";
+	menuItem -l "Sphere";
+	menuItem -l "Pin";
+	menuItem -l "Plus";
+	menuItem -l "Th. Plus";
+	menuItem -l "Prism";
+	menuItem -l "Hand";
+	menuItem -l "Arrow";
+	menuItem -l "Cog";
+	menuItem -l "PoleV";
+
+	setParent -u;
+
+	separator -w 355 -st "none"  -vis on -h 3 ;
+
+	rowColumnLayout -nc 4 -cs 2 2;
+	button -h 17 -w 120 -l "Parent Chain" -c parentChain;
+	button -h 17 -w 50 -l "Joint" -c loopJoint;
+	text -w 113 -l "" ;
+	button -h 17 -w 75 -bgc 0.263 1 0.635  -l "Rename Win" -c rd_renameWin renameWin;
+	setParent -u;
+
+	separator -w 355 -st "none"  -vis on -h 5 ;
+	rowColumnLayout -nc 5;
+	text -l "Ctrl Name" ;
+	textField  -h 25 -sf  ctrlName;
+	text -w 10 -l "" ;
+	textField -w 80 -h 17 -nbg on -tx "Calibri" fontInput;
+	button -h 17 -w 70 -l "Text Ctrl" -c rd_createText rd_createText;
+	setParent -u;
+
+	// object types ctrl
+	separator -w 355 -st "none"  -vis on -h 5 ;
+	rowColumnLayout -nc 4;
+	text -w 74 -l "Object Type:" stype;
+	radioCollection ;
+	radioButton -l "Transform" -cc othr othr;
+	radioButton -l "Mesh" -sl -cc msh msh;
+	radioButton -l "Edge Loop" -cc compnt compnt;
+	setParent -u;
+	separator -w 370 -st "in"  -vis 1 -h 8 ;
+
+	rowColumnLayout -nc 4 -vis (`radioButton  -q -sl othr`) rcOthr;
+	text -w 50 -l "";
+	checkBox -w 100 -l "Ctrl" -v 1 -vis on -en off cto;
+	checkBox -w 100 -l "FK Ctrl"  fko;
+	checkBox -w 100 -l "Parent Cons." -cc pto pto;
+	setParent -u;
+	rowColumnLayout -nc 2 -h 19  -vis (`radioButton  -q -sl othr`) ccOthr;
+	text -w 250 -l "";
+	checkBox -w 100 -l "Connect" -cc coc coc;
+	setParent -u;
+
+	rowColumnLayout -nc 4 rcJoint;
+	text -w 50 -l"";
+	checkBox -w 100 -l "Ctrl" -v 1 -ofc ct -cc ct ct;
+	checkBox -w 100 -l "FK Ctrl" fk;
+	checkBox -w 100 -l "Joint" -v 1 -cc jt jt;
+	setParent -u;
+
+	rowColumnLayout -nc 4 ccJoint;
+	text -w 50 -l"";
+	checkBox -w 100 -l "Parent Cons." -cc ptj ptj;
+	checkBox -w 100 -l "Single Mesh" -vis off -cc smj smj;
+	checkBox -w 100 -l "Skin Cls." -v 1 -vis (`checkBox -q -v jt`) sk;
+	setParent -u;
+
+	separator -st "none"  -vis on -h 5 ;
+	columnLayout ;    
+	button -w 370 -h 40 -bgc 0.263 1 0.635 -l "Create" -c createJ createJ;
+	button -w 370 -h 40 -bgc .859 .580 .337 -l "Create" -vis (`radioButton  -q -sl othr`) -c createO createO;
+	separator -st "none"  -vis on -h 5 ;
+	text -w 370  -l "Select deformable object" msgText;
+	separator -st "none"  -vis on -h 10 ;
+
+
+
+	showWindow mtCwin;
 //________________________________Window_End___________________
 
 }//__MultiController_end-----------
@@ -148,22 +159,43 @@ global proc coc()
 
 global proc jt()
 {
-	checkBox -e -vis  (`checkBox -q -v jt`) sk;
-	checkBox -e -vis  (`checkBox -q -v jt`) smj;
+	checkBox -e -en  (`checkBox -q -v jt`) sk;
 	string $jpt = `checkBox -q -v jt`;
 	if 	($jpt==on)
 	{
-	checkBox -e -v off -vis off ptj;
+	checkBox -e -v off ptj;
 	}
 	if 	($jpt==off)
 	{
-	checkBox -e -vis on ptj;
 	text -e -l "Select deformable object" msgText;
 	}
 }
 
+global proc ct()
+{
+	if (`checkBox -q -v ct`==1)
+	{
+		checkBox -e -en on ptj;
+		checkBox -e -en on fk;
+	}
+	else
+	{
+		checkBox -e -en off ptj;
+		checkBox -e -en off fk;
+	}
+	
+}
+
+global proc ptj()
+{
+	checkBox -e -en off -v off sk;
+	checkBox -e -v off smj;
+	checkBox -e -v off jt;
+}
 global proc msh()
 {
+	checkBox -e -vis on -v off ptj;
+	checkBox -e -v off smj;
 	rowColumnLayout -e -vis (`radioButton  -q -sl msh`) rcJoint;
 	rowColumnLayout -e -vis (`radioButton  -q -sl msh`) ccJoint;
 	button -e -vis (`radioButton  -q -sl msh`) createJ;
@@ -174,6 +206,9 @@ global proc msh()
 	text -e -l "Select single edge for loop. Do not select edge loop" msgText;
 	}
 	else{text -e -l "Select deformable object" msgText;}
+
+	button -e -bgc 0.263 1 0.635  createJ;
+	button -e -bgc 0.263 1 0.635  renameWin;
 }
 
 proc smj()
@@ -187,10 +222,30 @@ proc smj()
 
 global proc othr()
 {
+	checkBox -e -v off smj;
 	rowColumnLayout -e -vis (`radioButton  -q -sl othr`) rcOthr;
 	rowColumnLayout -e -vis (`radioButton  -q -sl othr`) ccOthr;
 	button -e -vis (`radioButton  -q -sl othr`) createO;
-	text -e -l "Select non deformable object" msgText;
+	text -e -l "Select Ttransform object to create ctrls" msgText;
+	button -e -bgc .859 .580 .337  renameWin;
+}
+
+global proc compnt()
+{
+	checkBox -e -vis off -v off ptj;
+	checkBox -e -v 1 smj;
+	rowColumnLayout -e -vis (`radioButton  -q -sl compnt`) rcJoint;
+	rowColumnLayout -e -vis (`radioButton  -q -sl compnt`) ccJoint;
+	button -e -vis (`radioButton  -q -sl compnt`) createJ;
+	text -e -l "Select deformable object" msgText;
+	if (`checkBox -q -v smj`==1)
+	{
+	text -e -l "Select single edge for loop. Do not select edge loop" msgText;
+	}
+	else{text -e -l "Select single edge for loop. Do not select edge loop" msgText;}
+
+	button -e -bgc 0.388 0.863 1 createJ;
+	button -e -bgc 0.388 0.863 1  renameWin;
 }
 //_________colorbtn__
 global proc colorbtn()
@@ -210,7 +265,7 @@ global proc colorbtn()
 		}
 	}
 		
-	print ("//_"+($color - 1)+ " no. index color apllied");
+	//print ("//_"+($color - 1)+ " no. index color apllied");
 }
 
 
@@ -541,6 +596,9 @@ global proc changeShape()
 		string $cCrvS[] = `ls-sl`;
 		parent -r -s $cCrvS $csel[$i];
 		select -r $cCrv; doDelete;
+		select -r $csel[$i];
+		colorbtn();
+		
 		
 	}//_$i_end
 }//--changeShape_end--------
@@ -556,138 +614,156 @@ global proc createJ()
 	float$ptj = `checkBox -q -v ptj`;
 	float$smj = `checkBox -q -v smj`;
 
-string $msel[] = `ls-sl`;
-if ($smj==0)//__if_smj_off
-{
-for($i=0; $i<size($msel); ++$i)
-{
-	//________________IF_Joint_ON_
-	if ($jt==1)
+	string $msel[] = `ls-sl`;
+	if ($smj==0)//__if_smj_off
 	{
-		if ($ct==0){
-		select $msel[$i];	
-		newCluster " -envelope 0";
-		string $clsel[] = `ls-sl`;
-		joint ; rename ($msel[$i]+"_J") ; parent -w;
-		string $jsel[] = `ls-sl`;
-		parentConstraint $clsel $jsel ;
-		delete $clsel;
-			if ($sk==1)
-			{
-				skinCluster $msel[$i] $jsel ;
-			}//_if_skin_end
+		string $name[];
+		string $edges[] = `filterExpand -sm 32 -sm 31 -sm 34 $msel`;
+		if (size($edges) > 0) {
+			select `ls-sl -o`;
+			pickWalk -d up;
+			string $na[] = `ls-sl -o`;
+			$name = componentName($na[0], $msel);
+			print "edge selected";
+		} else {
+			$name = findName($msel);
+			print "mesh selected";
 		}
-	}//_if_jnft_end
-	
-	//________________if_Ctrl_om_
-	if ($ct==1)
-	{
-		select $msel[$i];	
-		newCluster " -envelope 0";
-		string $clsel[] = `ls-sl`;
-		mc_cCrv("");
-		rename ($msel[$i]+"_C");
-		string $crsel[] = `ls-sl`;
-		colorbtn;
-		doGroup 0 1 1; rename ($msel[$i]+"_C_Grp");
-		doGroup 0 1 1;rename ($msel[$i]+"_C_Grp1");
-		string $grsel[] = `ls-sl`;
-		parentConstraint $clsel $grsel ;
-		delete $clsel;
-		
-			if ($ptj==1)
-			{
-			parentConstraint -mo $crsel $msel[$i] ;
-			scaleConstraint $crsel $msel[$i] ;
-			}//_if_ptj_end
-		
+		for($i=0; $i<size($msel); ++$i)
+		{
+			//________________IF_Joint_ON_
 			if ($jt==1)
 			{
-				joint ; rename ($msel[$i]+"_Jnt") ; parent -w;
+				if ($ct==0){
+				select $msel[$i];	
+				newCluster " -envelope 0";
+				string $clsel[] = `ls-sl`;
+				joint ;
+				rename ($name[$i]+"_jnt") ; parent -w;
 				string $jsel[] = `ls-sl`;
-				parentConstraint $crsel $jsel ;
-				scaleConstraint $crsel $jsel ;
-				
-				if ($sk==1)
-				{
-				skinCluster $msel[$i] $jsel ;
-				}//_if_skin_end
-			}//__if_jnt_end
+				parentConstraint $clsel $jsel ;
+				delete $clsel;
+					if ($sk==1)
+					{
+						skinCluster $msel[$i] $jsel ;
+					}//_if_skin_end
+				}
+			}//_if_jnft_end
 		
+			//________________if_Ctrl_om_
+			if ($ct==1)
+			{
+				select $msel[$i];	
+				newCluster " -envelope 0";
+				string $clsel[] = `ls-sl`;
+				mc_cCrv("");
+				rename ($name[$i] +"_ctrl");
+				string $crsel[] = `ls-sl`;
+				colorbtn;
+				doGroup 0 1 1;
+				rename ($name[$i]+"_ctrl_grp");
+				doGroup 0 1 1;
+				rename ($name[$i]+"_ctrl_grp1");
+				string $grsel[] = `ls-sl`;
+				parentConstraint $clsel $grsel ;
+				delete $clsel;
+				
+					if ($ptj==1)
+					{
+					parentConstraint -mo $crsel $msel[$i] ;
+					scaleConstraint $crsel $msel[$i] ;
+					}//_if_ptj_end
+				
+					if ($jt==1)
+					{
+						joint ;
+						rename ($name[$i]+"_jnt") ;
+						parent -w;
+						string $jsel[] = `ls-sl`;
+						parentConstraint $crsel $jsel ;
+						scaleConstraint $crsel $jsel ;
+						
+						if ($sk==1)
+						{
+						skinCluster $msel[$i] $jsel ;
+						}//_if_skin_end
+					}//__if_jnt_end
+			
 
-	}//_if_ct_end
-	
-}//__$i_end
+				}//_if_ct_end
+		
+		}//__$i_end
 
 	if (($fk+$ct)==2)
 	{
 		for($i=0; $i<(size($msel)-1); ++$i)
 		{
-		parent ($msel[$i+1]+"_C_Grp1") ($msel[$i]+"_C") ;
+		parent ($name[$i+1]+"_ctrl_grp1") ($name[$i]+"_ctrl") ;
 		}
 	}//_if_fkj_end
 
 
-}//__if_smj_off_end
+	}//__if_smj_off_end
 
-if ($smj==1)
-{
-	string $osel[] = `ls-fl-os`;
-	select `ls-sl -o`;
-	pickWalk -d up;
-	string $na[] = `ls-sl -o`;
-	for($i=0; $i<size($osel); ++$i)
+	if ($smj==1)
 	{
-		select $osel[$i];
-		polySelectSp -loop;	
-		newCluster " -envelope 0";
-		string $clsel[] = `ls-sl`;
-		joint ; rename ($na[0]+"_"+($i+1)+"_Jnt");  parent -w;
-		string $jsel[] = `ls-sl`;
-		parentConstraint $clsel $jsel ;
-		delete $clsel;	
-	
-	}//_$i_end
-
-	for($i=0; $i<(size($osel)-1); ++$i)
-	{
-		parent ($na[0]+"_"+($i+2)+"_Jnt") ($na[0]+"_"+($i+1)+"_Jnt") ;
-	}
-	
-	joint -e  -oj yxz -sao xup -ch ($na[0]+"_1_Jnt");
-	joint -e  -oj none -ch ($na[0]+"_"+(size($osel))+"_Jnt");
-
-	if ($sk==1)
-	{
-	skinCluster -bm 1 -sm 0 -mi 6 -dr 4 $na ($na[0]+"_"+($i+1)+"_Jnt") ;
-	}//_if_sk_end
-
-	if ($ct==1)
-	{
+		string $osel[] = `ls-fl-os`;
+		select `ls-sl -o`;
+		pickWalk -d up;
+		string $na[] = `ls-sl -o`;
+		string $name[] = componentName($na[0], $osel);
 		for($i=0; $i<size($osel); ++$i)
 		{
-		mc_cCrv("");
-		rename ($na[0]+"_"+($i+1)+"_C");
-		string $crsel[] = `ls-sl`;
-		colorbtn;
-		doGroup 0 1 1; rename ($na[0]+"_"+($i+1)+"_C_Grp");
-		doGroup 0 1 1;rename ($na[0]+"_"+($i+1)+"_C_Grp1");
-		string $grsel[] = `ls-sl`;
-		parentConstraint ($na[0]+"_"+($i+1)+"_Jnt") $grsel ;
-		DeleteConstraints;
-		parentConstraint $crsel ($na[0]+"_"+($i+1)+"_Jnt");
+			select $osel[$i];
+			polySelectSp -loop;	
+			newCluster " -envelope 0";
+			string $clsel[] = `ls-sl`;
+			joint ; rename ($name[$i]+"_jnt");  parent -w;
+			string $jsel[] = `ls-sl`;
+			parentConstraint $clsel $jsel ;
+			delete $clsel;	
+		
 		}//_$i_end
-	}//_if_ctj_end
-				
-	if ($fk+$ct==2)
-	{
-		for($i=1; $i<(size($osel)*1); ++$i)
-		{
-		parent ($na[0]+"_"+($i+1)+"_C_Grp1") ($na[0]+"_"+($i*1)+"_C") ;
-		}
-	}//_if_fkj_end
 
-}//_if_smj_on_end
+		for($i=0; $i<(size($osel)-1); ++$i)
+		{
+			parent ($name[$i+1]+"_jnt") ($name[$i]+"_jnt") ;
+		}
+		
+		joint -e  -oj yxz -sao xup -ch ($name[0]+"_jnt");
+		joint -e  -oj none -ch ($name[size($osel)-1]+"_jnt");
+
+		if ($sk==1)
+		{
+			skinCluster -bm 1 -sm 0 -mi 6 -dr 4 $na ($name[0]+"_jnt") ;
+		}//_if_sk_end
+
+		if ($ct==1)
+		{
+			for($i=0; $i<size($osel); ++$i)
+			{
+			mc_cCrv("");
+			rename ($name[$i]+"_ctrl");
+			string $crsel[] = `ls-sl`;
+			colorbtn;
+			doGroup 0 1 1; rename ($name[$i]+"_ctrl_grp");
+			doGroup 0 1 1;rename ($name[$i]+"_ctrl_grp1");
+			string $grsel[] = `ls-sl`;
+			parentConstraint ($name[$i]+"_jnt") $grsel ;
+			DeleteConstraints;
+			parentConstraint $crsel ($name[$i]+"_jnt");
+			}//_$i_end
+		}//_if_ctj_end
+					
+		if ($fk+$ct==2)
+		{
+			for($i=0; $i<(size($osel)-1); ++$i)
+			{
+			parent ($name[$i+1]+"_ctrl_grp1") ($name[$i]+"_ctrl") ;
+			}
+		}//_if_fkj_end
+
+	}//_if_smj_on_end
 
 }//--createJ_buton_end-----------
 
@@ -705,15 +781,16 @@ global proc createO()
 	string $msel[] = `ls-sl`;
 	if ($cto==1)
 	{
+	string $name[] = findName($msel);
 	for($i=0; $i<size($msel); ++$i)
 	{
 		select $msel[$i];	
 		mc_cCrv("");
-		rename ($msel[$i]+"_C");
+		rename ($name[$i]+"_ctrl");
 		string $crsel[] = `ls-sl`;
 		colorbtn;
-		doGroup 0 1 1; rename ($msel[$i]+"_C_Grp");
-		doGroup 0 1 1;rename ($msel[$i]+"_C_Grp1");
+		doGroup 0 1 1; rename ($name[$i]+"_ctrl_grp");
+		doGroup 0 1 1;rename ($name[$i]+"_ctrl_grp1");
 		string $grsel[] = `ls-sl`;
 		parentConstraint $msel[$i] $grsel ;
 		DeleteConstraints;
@@ -727,20 +804,20 @@ global proc createO()
 
 			select -cl;
 			doGroup 0 1 1;
-			rename ($msel[$i]+"_Grp");
-			parentConstraint $msel[$i] ($msel[$i]+"_Grp");
+			rename ($name[$i]+"_grp");
+			parentConstraint $msel[$i] ($msel[$i]+"_grp");
 			pickWalk -d down; doDelete;
 			
 			select -r $msel[$i];
 			pickWalk -d up;
 			string $ug[] = `ls-sl`;
 
-			parent $msel[$i] ($msel[$i]+"_Grp");
+			parent $msel[$i] ($msel[$i]+"_grp");
 
 			if ($ug[0]==$msel[$i]) {}
 			else
 			{
-			parent ($msel[$i]+"_Grp") $ug;
+			parent ($msel[$i]+"_grp") $ug;
 			}
 
 			connectAttr -f ($crsel[0]+".tx") ($msel[$i]+".tx");
@@ -763,7 +840,7 @@ global proc createO()
 	{
 		for($i=0; $i<(size($msel)-1); ++$i)
 		{
-		parent ($msel[$i+1]+"_C_Grp1") ($msel[$i]+"_C") ;
+		parent ($msel[$i+1]+"_ctrl_grp1") ($msel[$i]+"_ctrl") ;
 		}
 	}//_if_fko_end
 	}//_$cto_end
@@ -798,8 +875,353 @@ global proc mc_setIndexColor(int $value)
 {
     //int $intValue = (int)$value;
     catchQuiet(`colorIndexSliderGrp -e -v ($value+1) cslider`);
-	print ($value+" index color selected");
+	//float $color[] = `colorIndexSliderGrp -q -bgc cslider`;;
+	//button -e -bgc $color[0] $color[1] $color[2] rd_createText;
+	//print ($value+" index color selected \n");
+}
+
+global proc string[] findName(string $objName[])
+    {
+        string $myArray[];
+		string $inputName = `textField -q -tx ctrlName`;
+		for ($i=0;$i<(size($objName));++$i)
+		{
+			string $name;
+			string $ctrlName;
+			if ($inputName == "") {
+				$ctrlName = $objName[$i];
+				$myArray[size($myArray)] = $ctrlName;
+			}
+			else {
+				$ctrlName = $inputName;
+				string $hashes = `match "#+" $ctrlName`;
+				string $zero="";
+				int $zeroSize = size($hashes) - size(string($i));
+				for($j=0;$j<$zeroSize; ++$j)
+					{$zero = "0"+$zero;}
+				$name = `substitute $hashes $ctrlName ($zero + $i)`;
+
+				$myArray[size($myArray)] = $name;
+			}
+		}
+		return $myArray;
+		
+    }
+
+global proc string[] componentName(string $meshName, string $objName[])
+    {
+        string $myArray[];
+		string $inputName = `textField -q -tx ctrlName`;
+		for ($i=0;$i<(size($objName));++$i)
+		{
+			string $name;
+			string $ctrlName;
+			if ($inputName == "") {
+				$ctrlName = $meshName+$i;
+				$myArray[size($myArray)] = $ctrlName;
+			}
+			else {
+				$ctrlName = $inputName;
+				string $hashes = `match "#+" $ctrlName`;
+				string $zero="";
+				int $zeroSize = size($hashes) - size(string($i));
+				for($j=0;$j<$zeroSize; ++$j)
+					{$zero = "0"+$zero;}
+				$name = `substitute $hashes $ctrlName ($zero + $i)`;
+
+				$myArray[size($myArray)] = $name;
+			}
+		}
+		return $myArray;
+		
+    }
+
+global proc parentGrps(string $ctrls, string $jnts)
+	{
+		string $ctrlGrp =  "rd_ctrl_grp";
+		string $jntGrp = "rd_jnt_grp";
+		if (!`objExists $ctrlGrp`){
+			$ctrlGrp = `createNode "group" -name "rd_ctrl_grp"`;
+			}
+		if (!`objExists $jntGrp`){
+			$jntGrp = `createNode "group" -name "rd_jnt_grp"`;
+			}
+
+	}
+///_________________________THE___END_________
+multiController;
+
+///create text in ctrl
+
+
+global proc rd_createText()
+{
+
+	string $textName = `textField -q -tx ctrlName`; 
+	int $color = `colorIndexSliderGrp -q -v cslider`-1;
+	string $fontInput = `textField -q -tx fontInput`;
+
+    if(`size($textName)` > 0)
+    {
+        string $selCurve[] = `ls -sl`;
+        if(`size($selCurve)` > 0)
+        {
+            string $textCurve[] = `textCurves -ch 0 -f ($fontInput+"|h-13|w400|c0") -t ($textName)`;
+            select -r $textCurve;
+            string $os[] = `ls -sl -o`;
+            string $ch[] = `listRelatives -ad $os`;
+            select -r $ch;
+            string $curves[] = `ls -sl -typ "nurbsCurve"`;
+            select $curves;
+            pickWalk -d up;
+            parent -w;
+            DeleteHistory;
+            FreezeTransformations;
+            makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;
+            CenterPivot;
+            string $createGrp = `group`; xform -os -piv 0 0 0;
+            rotate -r -os -90 0 0 ;
+            CenterPivot;
+            move -rpr 0 0 0 ;
+            DeleteHistory;
+            FreezeTransformations;
+            makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;
+            CenterPivot;
+            select -r $curves $selCurve;
+            parent -r -s;
+
+            for($each in $curves)
+            {  
+                setAttr ($each + ".overrideEnabled") 1;
+                setAttr ($each + ".overrideColor") $color;
+            }
+
+            select -r $curves;
+            string $textCName ="TestShape_";
+            string $textCtrlSel[] = `ls -sl `;
+            string $textCtrlSN;
+            string $textCtrlNewSN;
+            string $textCtrlNewName;
+            string $textCtrlObj;
+
+            for($textC=0; $textC<`size($textCtrlSel)`; $textC++)
+            {
+                $textCtrlObj = $textCtrlSel[$textC];
+
+                int $n = $textC + 01;
+
+                string $textCtrlpadStr = "";
+
+                for ($textCp=1; $textCp < 2; ++$textCp)
+                    {
+                if ($n < pow(10, $textCp) )
+                    $textCtrlpadStr += "0";
+                }
+                $textCtrlNewSN = ($textCName+$textCtrlpadStr+$n);
+                $textCtrlNewName = `rename $textCtrlObj $textCtrlNewSN`;
+            }
+
+            select -r $textCurve $createGrp;
+            delete;
+            select -cl;
+        }
+
+        else
+        {
+            print "Select Control For Parent...";
+        }
+
+    }
+
+    else
+    {
+        print "Type Text";
+    }
+
+}
+
+///rename Window
+global proc rd_renameWin()
+{
+	////////////window
+	if (`window -ex rdRenameWin`)
+		deleteUI rdRenameWin;
+	window -s on -w 350 -h 250 -t "rd renameWin" rdRenameWin;
+
+	//////////// Head
+	columnLayout -adj on;
+	separator -st "none"  -vis on -h 10 ;
+	text -l "Rahul D's Rename Tool ";
+
+	separator -st "none"  -vis on -h 5 ;
+	rowColumnLayout -nc 3 -cw 1 100 -cw 2 50;
+	optionMenuGrp  -adj on -l "" -cc "rdRn_onOptionMenuChange" rdRnOptionMenu; 
+	menuItem -l "Chain";
+	menuItem -l "Replace";
+	menuItem -l "Prefix";
+	menuItem -l "Sufix";
+
+	text -l "";
+	checkBox -vis on -l "Auto Type" rdrnAutoType;
+
+	setParent -u;
+
+	////////coloum 2
+	rowColumnLayout -en off -nc 5 -cw 1 10 -cw 2 20 -cw 3 200 rdRnSearchCol;
+	text -l "";
+	button -l ">" -c "rdRn_getObj rdRnSearchInput";
+	textField -h 10 -sf  rdRnSearchInput;
+	setParent -u;
+
+
+	////////coloum 3
+	rowColumnLayout -nc 5 -cw 1 10 -cw 2 20 -cw 3 200;
+	text -l "";
+	button -l ">" -c "rdRn_getObj rdRnReplaceInput";
+	textField  rdRnReplaceInput;
+	setParent -u;
+
+	separator -st "none"  -vis on -h 10 ;
+	////////coloum 4
+	rowColumnLayout -nc 5 -cw 1 10 -cw 2 100 -cw 3 10 -cw 4 100 -cw 5 10;
+	text -l "";
+	button -l "Rename Sel" -c "rdRn_doRename Sel";
+	text -l "";
+	button -l "Rename Hi" -c "rdRn_doRename Hi";
+	text -l "";
+	setParent -u;
+
+
+	showWindow rdRenameWin;
+//////////////////Window End
 }
 
 
-///_________________________THE___END_________
+//// rename window procs
+
+global proc rdRn_onOptionMenuChange()
+{
+    $option = `optionMenuGrp -q -v rdRnOptionMenu`;
+
+    if($option == "Prefix")
+    {   rowColumnLayout -e -en off rdRnSearchCol;
+        checkBox -e -vis false rdrnAutoType;}
+    if($option == "Sufix")
+    {   rowColumnLayout -e -en off rdRnSearchCol;
+        checkBox -e -vis off rdrnAutoType;}
+    if($option == "Replace")
+    {   rowColumnLayout -e -en on rdRnSearchCol;
+        checkBox -e -vis off rdrnAutoType;}
+    if($option == "Chain")
+    {   rowColumnLayout -e -en off rdRnSearchCol;
+        checkBox -e -vis on rdrnAutoType;}
+
+    
+}
+
+global proc rdRn_getObj(string $textInput)
+{
+	string $sl[] = `ls-sl`;
+    textField -e -tx ($sl) $textInput;
+}
+
+global proc rdRn_doRename(string $mode)
+{
+    string $sel[] = `ls-sl`;
+    //print $sel;
+    if($mode == "Sel")
+    {
+        for($i=0; $i<size($sel); ++$i)        
+        {
+            rdRn_renameOne ($i+1) $sel[$i];
+            //print $sel[$i];
+        }
+    }
+    if($mode=="Hi")
+    {
+        for($i=0; $i<size($sel); ++$i)
+        {            
+            string $hi[] = `listRelatives -f  -ad  -c $sel[$i]`;
+            $hi[size($hi)] = $sel[$i];
+            int $size = size($hi);
+            for($j=0; $j<$size;  ++$j)
+            {   
+            
+                rdRn_renameOne ($size-$j) $hi[$j];
+            }
+        } 
+    }
+
+
+}
+
+global proc rdRn_renameOne(string $num, string $obj)
+{
+    string $textInput = `textField -q -tx rdRnReplaceInput`;
+    string $searchInput = `textField -q -tx rdRnSearchInput`;
+    $option = `optionMenuGrp -q -v rdRnOptionMenu`;
+    int $autoType = `checkBox -q -v rdrnAutoType`;
+
+    string $shortName = rd_getShortName($obj);
+    
+    if($option == "Prefix")
+        rename $obj ($textInput+$shortName);
+    if($option == "Sufix")
+        rename $obj ($shortName+$textInput);
+    if($option == "Replace")
+    {
+        string $name = `substitute $searchInput $shortName $textInput`;
+        rename $obj $name ;
+    }
+    if($option == "Chain")
+    {
+        string $name, $type;
+        string $hashes = `match "#+" $textInput`;
+        string $zero;
+        int $zeroSize = size($hashes) - size($num);
+        for($i=0;$i<$zeroSize; ++$i)
+            {$zero = "0"+$zero;}
+        $name = `substitute $hashes $textInput ($zero + $num)`;
+        if($name==$textInput)
+            $name = ($textInput + $num);
+        if($autoType==1)
+            $type = rdRn_getObjType($obj);
+        rename $obj ($name+$type) ;
+    }
+
+}
+
+global proc string rdRn_getObjType(string $object)
+{
+    string $shape[] = `listRelatives -f -s $object`;
+    if (!`size($shape)`)
+        $shape[0] = $object;
+    string $shapeType = `nodeType $shape`;
+    string $return;
+
+    switch ($shapeType){
+        case "mesh":
+            $return = "_Geo"; break;
+        case "joint":
+            $return = "_Jnt"; break;
+        case "transform":
+            $return = "_Grp"; break;
+        case "clusterHandle":
+            $return = "_Cls"; break;
+        case "locator":
+            $return = "_Loc"; break;
+        case "nurbsCurve":
+            $return = "_Crv"; break;                                            
+    }
+    return $return;
+}
+    
+global proc string rd_getShortName(string $obj)
+{
+    string $array[];
+    tokenize $obj "|" $array ;
+    string $shotName = $array[size($array)-1];
+    return $shotName;
+}
+
+///_____THE___END
