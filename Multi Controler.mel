@@ -1,17 +1,17 @@
 //Date created ; 25-04-2018
 //Created by Rahul Deb Barman @ India
 //Last modified : 04-22-2026
-global proc multiController()
+global proc rd_multiController()
 	{
 	//________________________________Window___________________
 	if (`window -ex mtCwin`)
 	deleteUI mtCwin;
-	window -s off -w 370 -h 200-t "Multi Controller" mtCwin;
+	window -s off -w 370 -h 200-t "Multi Controller 2" mtCwin;
 
 	//________________________________Head___________________
 	columnLayout -w 370 -adj on;
 	separator -st "none"  -vis on -h 10 ;
-	text -l " Rahul D's Multi Controller";
+	text -l " Rahul D's Multi Controller 2";
 
 	separator -st "none"  -vis on -h 10 ;
 
@@ -145,19 +145,18 @@ global proc multiController()
 //________________________________Window_End___________________
 
 }//__MultiController_end-----------
-//multiController;
 
-global proc pto()
+proc pto()
 {
 	checkBox -e -v off coc;
 }
 
-global proc coc()
+proc coc()
 {
 	checkBox -e -v off pto;
 }
 
-global proc jt()
+proc jt()
 {
 	checkBox -e -en  (`checkBox -q -v jt`) sk;
 	string $jpt = `checkBox -q -v jt`;
@@ -171,7 +170,7 @@ global proc jt()
 	}
 }
 
-global proc ct()
+proc ct()
 {
 	if (`checkBox -q -v ct`==1)
 	{
@@ -186,13 +185,13 @@ global proc ct()
 	
 }
 
-global proc ptj()
+proc ptj()
 {
 	checkBox -e -en off -v off sk;
 	checkBox -e -v off smj;
 	checkBox -e -v off jt;
 }
-global proc msh()
+proc msh()
 {
 	checkBox -e -vis on -v off ptj;
 	checkBox -e -v off smj;
@@ -220,7 +219,7 @@ proc smj()
 	else{text -e -l "Select deformable object" msgText;}
 }
 
-global proc othr()
+proc othr()
 {
 	checkBox -e -v off smj;
 	rowColumnLayout -e -vis (`radioButton  -q -sl othr`) rcOthr;
@@ -230,7 +229,7 @@ global proc othr()
 	button -e -bgc .859 .580 .337  renameWin;
 }
 
-global proc compnt()
+proc compnt()
 {
 	checkBox -e -vis off -v off ptj;
 	checkBox -e -v 1 smj;
@@ -248,9 +247,9 @@ global proc compnt()
 	button -e -bgc 0.388 0.863 1  renameWin;
 }
 //_________colorbtn__
-global proc colorbtn()
+proc colorbtn()
 {
-	string $ctrlSel[] = `ls -sl`;
+	string $ctrlSel[] = `ls -sl-l`;
     int $Os = `size($ctrlSel)`;
     int $color = `colorIndexSliderGrp -q -v cslider`;
 	for ($all in $ctrlSel)
@@ -273,7 +272,7 @@ global proc colorbtn()
 
 
 
-global proc string mc_cCrv( string $cShape)
+proc string mc_cCrv( string $cShape)
 {
 	if($cShape=="")  $cShape = `optionMenuGrp -q -v cShape`;
 		
@@ -581,7 +580,7 @@ global proc string mc_cCrv( string $cShape)
 	return $selShape[0];
 }//--cCrv_end----------
 
-global proc changeShape()
+proc changeShape()
 {
 	string $csel[] = `ls-sl`;
 	for ($i=0;$i<size($csel); ++$i)
@@ -604,7 +603,7 @@ global proc changeShape()
 }//--changeShape_end--------
 
 //___________CreateJ_Button_
-global proc createJ()
+proc createJ()
 {
 	//Checbox Work
 	float $jt = `checkBox  -q -v jt`;
@@ -682,15 +681,20 @@ global proc createJ()
 						string $jsel[] = `ls-sl`;
 						parentConstraint $crsel $jsel ;
 						scaleConstraint $crsel $jsel ;
+						rd_parentGrps( "", $jsel[0]);
 						
 						if ($sk==1)
 						{
 						skinCluster $msel[$i] $jsel ;
 						}//_if_skin_end
 					}//__if_jnt_end
-			
 
-				}//_if_ct_end
+				if($fk==0)
+				{
+					rd_parentGrps( $name[$i]+"_ctrl_grp1", "");
+				}
+
+			}//_if_ct_end
 		
 		}//__$i_end
 
@@ -700,6 +704,7 @@ global proc createJ()
 		{
 		parent ($name[$i+1]+"_ctrl_grp1") ($name[$i]+"_ctrl") ;
 		}
+		rd_parentGrps( $name[0]+"_ctrl_grp1", "");
 	}//_if_fkj_end
 
 
@@ -729,6 +734,7 @@ global proc createJ()
 		{
 			parent ($name[$i+1]+"_jnt") ($name[$i]+"_jnt") ;
 		}
+		rd_parentGrps( "", $name[0]+"_jnt");
 		
 		joint -e  -oj yxz -sao xup -ch ($name[0]+"_jnt");
 		joint -e  -oj none -ch ($name[size($osel)-1]+"_jnt");
@@ -742,16 +748,20 @@ global proc createJ()
 		{
 			for($i=0; $i<size($osel); ++$i)
 			{
-			mc_cCrv("");
-			rename ($name[$i]+"_ctrl");
-			string $crsel[] = `ls-sl`;
-			colorbtn;
-			doGroup 0 1 1; rename ($name[$i]+"_ctrl_grp");
-			doGroup 0 1 1;rename ($name[$i]+"_ctrl_grp1");
-			string $grsel[] = `ls-sl`;
-			parentConstraint ($name[$i]+"_jnt") $grsel ;
-			DeleteConstraints;
-			parentConstraint $crsel ($name[$i]+"_jnt");
+				mc_cCrv("");
+				rename ($name[$i]+"_ctrl");
+				string $crsel[] = `ls-sl`;
+				colorbtn;
+				doGroup 0 1 1; rename ($name[$i]+"_ctrl_grp");
+				doGroup 0 1 1;rename ($name[$i]+"_ctrl_grp1");
+				string $grsel[] = `ls-sl`;
+				parentConstraint ($name[$i]+"_jnt") $grsel ;
+				DeleteConstraints;
+				parentConstraint $crsel ($name[$i]+"_jnt");
+				if($fk==0)
+				{
+					rd_parentGrps( $name[$i]+"_ctrl_grp1", "");
+				}
 			}//_$i_end
 		}//_if_ctj_end
 					
@@ -761,6 +771,7 @@ global proc createJ()
 			{
 			parent ($name[$i+1]+"_ctrl_grp1") ($name[$i]+"_ctrl") ;
 			}
+			rd_parentGrps( $name[0]+"_ctrl_grp1", "");
 		}//_if_fkj_end
 
 	}//_if_smj_on_end
@@ -769,7 +780,7 @@ global proc createJ()
 
 
 //___________CreateO_Button
-global proc createO()
+proc createO()
 {
 	//_Checbox_Work
 	float $cto = `checkBox -q -v cto`;
@@ -833,21 +844,26 @@ global proc createO()
 			connectAttr -f ($crsel[0]+".sz") ($msel[$i]+".sz");
 
 		}//_if_COC_end
+		if($fko==0)
+		{
+			rd_parentGrps( $name[$i]+"_ctrl_grp1", "");
+		}
 				
 	}//_$i_end
 	
 	if ($fko==1)
 	{
-		for($i=0; $i<(size($msel)-1); ++$i)
+		for($i=0; $i<(size($name)-1); ++$i)
 		{
-		parent ($msel[$i+1]+"_ctrl_grp1") ($msel[$i]+"_ctrl") ;
+			parent ($name[$i+1]+"_ctrl_grp1") ($name[$i]+"_ctrl") ;
 		}
+		rd_parentGrps( $name[0]+"_ctrl_grp1", "");
 	}//_if_fko_end
 	}//_$cto_end
 }//--createO_buton_end----------
 
 //__________Create_joint_Button
-global proc loopJoint()
+proc loopJoint()
 {
 	string $sel[] = `ls-sl`;
 	newCluster " -envelope 0";
@@ -861,7 +877,7 @@ global proc loopJoint()
 }//--loopJoint_buton_end----------
 
 //__________Create_ParentChain_Button
-global proc parentChain()
+proc parentChain()
 {
 	string $sel[] = `ls-sl`;
 	for ($i=0;$i<(size($sel)-1);++$i)
@@ -871,7 +887,7 @@ global proc parentChain()
 
 }//--parentChain_buton_end----------
 
-global proc mc_setIndexColor(int $value)
+proc mc_setIndexColor(int $value)
 {
     //int $intValue = (int)$value;
     catchQuiet(`colorIndexSliderGrp -e -v ($value+1) cslider`);
@@ -880,7 +896,7 @@ global proc mc_setIndexColor(int $value)
 	//print ($value+" index color selected \n");
 }
 
-global proc string[] findName(string $objName[])
+proc string[] findName(string $objName[])
     {
         string $myArray[];
 		string $inputName = `textField -q -tx ctrlName`;
@@ -900,6 +916,8 @@ global proc string[] findName(string $objName[])
 				for($j=0;$j<$zeroSize; ++$j)
 					{$zero = "0"+$zero;}
 				$name = `substitute $hashes $ctrlName ($zero + $i)`;
+				if($name==$inputName)
+           			$name = ($inputName + $i);
 
 				$myArray[size($myArray)] = $name;
 			}
@@ -908,7 +926,7 @@ global proc string[] findName(string $objName[])
 		
     }
 
-global proc string[] componentName(string $meshName, string $objName[])
+proc string[] componentName(string $meshName, string $objName[])
     {
         string $myArray[];
 		string $inputName = `textField -q -tx ctrlName`;
@@ -936,25 +954,38 @@ global proc string[] componentName(string $meshName, string $objName[])
 		
     }
 
-global proc parentGrps(string $ctrls, string $jnts)
+proc rd_parentGrps(string $ctrl, string $jnt)
 	{
-		string $ctrlGrp =  "rd_ctrl_grp";
-		string $jntGrp = "rd_jnt_grp";
-		if (!`objExists $ctrlGrp`){
-			$ctrlGrp = `createNode "group" -name "rd_ctrl_grp"`;
+		string $ctrlMainGrp =  "rd_ctrl_grp";
+		string $jntMainGrp = "rd_jnt_grp";
+
+		if($ctrl!="")
+		{
+			if (!`objExists $ctrlMainGrp`){
+				group -em -name $ctrlMainGrp;
 			}
-		if (!`objExists $jntGrp`){
-			$jntGrp = `createNode "group" -name "rd_jnt_grp"`;
+			catchQuiet(`parent $ctrl $ctrlMainGrp`);
+		}
+		
+		if($jnt!="")
+		{
+			if (!`objExists $jntMainGrp`){
+				group -em -name $jntMainGrp;
 			}
+			catchQuiet(`parent $jnt $jntMainGrp`);
+		}
+		
+		
+
 
 	}
 ///_________________________THE___END_________
-multiController;
+rd_multiController;
 
 ///create text in ctrl
 
 
-global proc rd_createText()
+proc rd_createText()
 {
 
 	string $textName = `textField -q -tx ctrlName`; 
@@ -1041,7 +1072,7 @@ global proc rd_createText()
 }
 
 ///rename Window
-global proc rd_renameWin()
+proc rd_renameWin()
 {
 	////////////window
 	if (`window -ex rdRenameWin`)
@@ -1099,7 +1130,7 @@ global proc rd_renameWin()
 
 //// rename window procs
 
-global proc rdRn_onOptionMenuChange()
+proc rdRn_onOptionMenuChange()
 {
     $option = `optionMenuGrp -q -v rdRnOptionMenu`;
 
@@ -1119,13 +1150,13 @@ global proc rdRn_onOptionMenuChange()
     
 }
 
-global proc rdRn_getObj(string $textInput)
+proc rdRn_getObj(string $textInput)
 {
 	string $sl[] = `ls-sl`;
     textField -e -tx ($sl) $textInput;
 }
 
-global proc rdRn_doRename(string $mode)
+proc rdRn_doRename(string $mode)
 {
     string $sel[] = `ls-sl`;
     //print $sel;
@@ -1155,7 +1186,7 @@ global proc rdRn_doRename(string $mode)
 
 }
 
-global proc rdRn_renameOne(string $num, string $obj)
+proc rdRn_renameOne(string $num, string $obj)
 {
     string $textInput = `textField -q -tx rdRnReplaceInput`;
     string $searchInput = `textField -q -tx rdRnSearchInput`;
@@ -1191,7 +1222,7 @@ global proc rdRn_renameOne(string $num, string $obj)
 
 }
 
-global proc string rdRn_getObjType(string $object)
+proc string rdRn_getObjType(string $object)
 {
     string $shape[] = `listRelatives -f -s $object`;
     if (!`size($shape)`)
@@ -1216,7 +1247,7 @@ global proc string rdRn_getObjType(string $object)
     return $return;
 }
     
-global proc string rd_getShortName(string $obj)
+proc string rd_getShortName(string $obj)
 {
     string $array[];
     tokenize $obj "|" $array ;
